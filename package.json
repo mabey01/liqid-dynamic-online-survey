@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "test": "mocha -w --require @babel/register --require ./test/helpers.js --require ./test/dom.js 'src/**/*.test.{js,jsx}'",
+    "test": "mocha --require @babel/register --require ./test/helpers.js --require ./test/dom.js 'src/**/*.test.{js,jsx}'",
     "prettier": "prettier --single-quote --tab-width 4 --write src/**/*.{js,jsx}"
   },
   "pre-commit": [
