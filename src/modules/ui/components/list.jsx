@@ -3,7 +3,7 @@ import { css } from 'emotion';
 
 import Colors from '../colors.js';
 
-const tableStyle = css`
+const listStyle = css`
     list-style-type: none;
     counter-reset: table-counter;
 
@@ -38,6 +38,6 @@ const tableStyle = css`
     }
 `;
 
-export default function Table({ children }) {
-    return <ol className={tableStyle}>{children}</ol>;
+export default function List({ children }) {
+    return <ol className={listStyle}>{children}</ol>;
 }

@@ -25,13 +25,14 @@ export default class Answer extends React.PureComponent {
         this.checkValidity();
     }
 
-    componentDidUpdate() {
-        this.checkValidity();
+    componentDidUpdate({ answer }) {
+        if (answer !== this.props.answer) {
+            this.checkValidity();
+        }
     }
 
     checkValidity() {
         const { answer, onAnswerValid } = this.props;
-
         if (answer) {
             onAnswerValid();
         }

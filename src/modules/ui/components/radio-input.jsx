@@ -27,14 +27,11 @@ export default function RadioInput({
                                 {...props}
                                 type="radio"
                                 id={option}
-                                name="answer"
                                 value={option}
                                 checked={option === value}
                                 onChange={e => {
-                                    console.log(e);
-                                    console.log(e.target.value);
                                     changeValue(e.target.value);
-                                    onChange(e);
+                                    onChange && onChange(e);
                                 }}
                             />
                             <label htmlFor={option}>{option}</label>
@@ -48,7 +45,8 @@ export default function RadioInput({
 
 RadioInput.propTypes = {
     defaultValue: T.oneOfType([T.string, T.number]),
-    options: T.arrayOf(T.oneOfType([T.string, T.number])).isRequired
+    options: T.arrayOf(T.oneOfType([T.string, T.number])).isRequired,
+    onChange: T.func
 };
 
 RadioInput.defaultProps = {

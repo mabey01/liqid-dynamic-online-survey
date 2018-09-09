@@ -3,7 +3,7 @@ import T from 'prop-types';
 import { css } from 'emotion';
 
 import ProvideValueState from '../smart-components/provide-value-state.jsx';
-import { inputStyle } from './text-input.jsx';
+import inputStyle from './input.style.js';
 
 const dropdownStyle = css`
     ${inputStyle} -webkit-appearance: none;
@@ -28,7 +28,7 @@ export default function DropdownInput({
                     className={dropdownStyle}
                     onChange={e => {
                         changeValue(e.target.value);
-                        onChange(e);
+                        onChange && onChange(e);
                     }}
                 >
                     <option value="">Select</option>
@@ -45,7 +45,8 @@ export default function DropdownInput({
 
 DropdownInput.propTypes = {
     defaultValue: T.oneOfType([T.string, T.number]),
-    options: T.arrayOf(T.oneOfType([T.string, T.number])).isRequired
+    options: T.arrayOf(T.oneOfType([T.string, T.number])).isRequired,
+    onChange: T.func
 };
 
 DropdownInput.defaultProps = {

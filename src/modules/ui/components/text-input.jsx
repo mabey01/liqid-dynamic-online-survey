@@ -1,35 +1,8 @@
 import React from 'react';
-import { css } from 'emotion';
-import Colors from '../colors.js';
+import T from 'prop-types';
 
 import ProvideValueState from '../smart-components/provide-value-state.jsx';
-
-export const inputStyle = css`
-    width: 100%;
-
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid ${Colors.darkGrey};
-
-    font-size: 2em;
-    font-weight: 100;
-
-    padding: 20px 0 0 0;
-    box-sizing: border-box;
-
-    background: transparent;
-
-    &:active,
-    :focus {
-        outline: none;
-    }
-
-    &::placeholder {
-        color: ${Colors.lightGrey};
-    }
-
-    color: ${Colors.darkGrey};
-`;
+import inputStyle from './input.style.js';
 
 export default function TextInput({ defaultValue, onChange, ...props }) {
     return (
@@ -42,7 +15,6 @@ export default function TextInput({ defaultValue, onChange, ...props }) {
                         value={value || ''}
                         className={inputStyle}
                         onChange={e => {
-                            console.log(e.target.value);
                             changeValue(e.target.value.trimStart());
                             onChange(e);
                         }}
@@ -52,3 +24,8 @@ export default function TextInput({ defaultValue, onChange, ...props }) {
         </ProvideValueState>
     );
 }
+
+TextInput.propTypes = {
+    defaultValue: T.string,
+    onChange: T.func
+};

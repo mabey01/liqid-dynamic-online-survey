@@ -5,5 +5,5 @@ export default {
     extraLightGrey: '#efefef',
 
     red: '#ff523e',
-    green: '#3db855'
+    green: '#36bd4f'
 };

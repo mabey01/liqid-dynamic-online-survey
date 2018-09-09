@@ -2,7 +2,7 @@ import React from 'react';
 import T from 'prop-types';
 
 import ProvideValueState from '../smart-components/provide-value-state.jsx';
-import { inputStyle } from './text-input.jsx';
+import inputStyle from './input.style.js';
 
 export default function NumberInput({ defaultValue, onChange, ...props }) {
     return (
@@ -23,9 +23,7 @@ export default function NumberInput({ defaultValue, onChange, ...props }) {
                                 changeValue(value);
                             }
 
-                            console.log(value);
-
-                            onChange(e);
+                            onChange && onChange(e);
                         }}
                     />
                 );
@@ -35,7 +33,8 @@ export default function NumberInput({ defaultValue, onChange, ...props }) {
 }
 
 NumberInput.propTypes = {
-    defaultValue: T.oneOfType([T.string, T.number])
+    defaultValue: T.string,
+    onChange: T.func
 };
 
 NumberInput.defaultProps = {

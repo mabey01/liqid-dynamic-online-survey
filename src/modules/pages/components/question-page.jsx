@@ -11,7 +11,6 @@ import {
 
 export default function QuestionPage({ match, history }) {
     const index = parseInt(match.params.index);
-    console.log(index);
     return (
         <ProvideAllQuestion>
             {({ questions }) => (

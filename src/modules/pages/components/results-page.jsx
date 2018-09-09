@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { css } from 'emotion';
 
 import { ProvideAllQuestion } from 'survey';
-import { Table, Colors } from 'ui';
+import { List, Colors, Link } from 'ui';
+
+const headerStyle = css`
+    padding: 5px 0;
+
+    & > * {
+        margin: 0 10px 0 0;
+    }
+`;
 
 const questionStyle = css`
     &:before {
@@ -29,15 +36,21 @@ const answerStyle = css`
 export default function ResultsPage() {
     return (
         <div>
-            <Link to="/startOver">START OVER</Link>
+            <header className={headerStyle}>
+                <Link to="/">Home</Link>
+                <Link to="/startOver">Start over</Link>
+            </header>
+
             <ProvideAllQuestion>
                 {({ questions }) => (
-                    <Table>
-                        {questions.map(question => {
+                    <List>
+                        {questions.map((question, index) => {
                             return (
                                 <li key={question.question}>
                                     <div className={questionStyle}>
-                                        {question.question}
+                                        <Link to={`question/${index}`}>
+                                            {question.question}
+                                        </Link>
                                     </div>
                                     <div className={answerStyle}>
                                         {question.answer}
@@ -45,7 +58,7 @@ export default function ResultsPage() {
                                 </li>
                             );
                         })}
-                    </Table>
+                    </List>
                 )}
             </ProvideAllQuestion>
         </div>
