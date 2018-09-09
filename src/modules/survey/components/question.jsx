@@ -4,6 +4,12 @@ import { css } from 'emotion';
 import { Colors } from 'ui';
 
 const questionStyle = css`
+    &:before {
+        content: 'Q:';
+        color: ${Colors.lightGrey};
+        margin-right: 10px;
+    }
+
     display: flex;
     justify-content: center;
 
@@ -13,17 +19,6 @@ const questionStyle = css`
     line-height: 1em;
 `;
 
-const questionLabelStyle = css`
-    color: ${Colors.lightGrey};
-`;
-
 export default function Question({ question }) {
-    return (
-        <div className={questionStyle}>
-            <div>
-                <span className={questionLabelStyle}>Q: </span>
-                {question}
-            </div>
-        </div>
-    );
+    return <div className={questionStyle}>{question}</div>;
 }

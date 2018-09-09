@@ -1,8 +1,14 @@
 import React from 'react';
+import T from 'prop-types';
 
 import { Button, Footer } from 'ui';
 
 export default class Form extends React.PureComponent {
+    static propTypes = {
+        onBack: T.func.isRequired,
+        onNext: T.func.isRequired
+    };
+
     state = {
         isSubmitDisabled: true
     };

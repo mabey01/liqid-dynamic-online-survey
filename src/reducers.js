@@ -1,4 +1,4 @@
-import {ADD_ANSWER, REMOVE_ALL_ANSWERS} from 'survey';
+import { ADD_ANSWER, REMOVE_ALL_ANSWERS } from 'survey';
 
 export default function todoApp(state = {}, action) {
     if (action.type === ADD_ANSWER) {
