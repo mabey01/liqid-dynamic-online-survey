@@ -10,6 +10,7 @@ export default class Answer extends React.PureComponent {
         onAnswerInvalid: T.func.isRequired,
 
         answer: T.oneOfType([T.string, T.number]),
+        placeholder: T.oneOfType([T.string, T.number]),
         options: T.arrayOf(T.oneOfType([T.string, T.number])),
         inputFieldName: T.string
     };
@@ -42,7 +43,7 @@ export default class Answer extends React.PureComponent {
     }
 
     render() {
-        const { answerType, answer, options, inputFieldName } = this.props;
+        const { answerType, placeholder, answer, options, inputFieldName } = this.props;
 
         if (answerType === 'dropdown' || answerType === 'radio') {
             let MultipleOptionsInputComponent = DropdownInput;
@@ -74,6 +75,7 @@ export default class Answer extends React.PureComponent {
                 required
                 name={inputFieldName}
                 defaultValue={answer}
+                placeholder={placeholder}
                 onChange={::this.handleOnChange}
             />
         );
