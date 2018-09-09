@@ -13,14 +13,21 @@ import Reducer from './reducers.js';
 
 import SurveyData from './questions.json';
 
+const answers = loadFromStorage('answers');
+
 const store = createStore(
     Reducer,
-    loadFromStorage('state') || { questions: SurveyData },
+    {
+        questions: SurveyData.map((question, index) => ({
+            ...question,
+            answer: answers ? answers[index] : null
+        }))
+    },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 store.subscribe(() => {
-    writeToStorage('state', store.getState());
+    writeToStorage('answers', store.getState().questions.map(question => question.answer));
 });
 
 ReactDOM.render(

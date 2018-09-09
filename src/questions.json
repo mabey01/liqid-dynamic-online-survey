@@ -1,12 +1,14 @@
 [
   {
-    "question": "How many start are there?",
-    "answerType": "number"
+    "question": "What year were you born?",
+    "answerType": "number",
+    "placeholder": 1990
   },
 
   {
-    "question": "What is the name of our closest Star?",
-    "answerType": "text"
+    "question": "What fictional character are you?",
+    "answerType": "text",
+    "placeholder": "John Snow"
   },
 
   {
@@ -16,8 +18,8 @@
   },
 
   {
-    "question": "Who is not a Jedi Master?",
+    "question": "Who is your captain of choice?",
     "answerType": "dropdown",
-    "options": ["Luke Skywalker", "Yoda", "Mace Windu"]
+    "options": ["Jonathan Archer", "Robert April", "James T. Kirk", "Jean-Luc Picard", "Kathryn Janeway"]
   }
 ]
