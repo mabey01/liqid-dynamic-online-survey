@@ -4,7 +4,6 @@ import T from 'prop-types';
 import { NumberInput, TextInput, DropdownInput, RadioInput } from 'ui';
 
 export default class Answer extends React.PureComponent {
-
     static propTypes = {
         answerType: T.string.isRequired,
         onAnswerValid: T.func.isRequired,
@@ -29,26 +28,21 @@ export default class Answer extends React.PureComponent {
         this.checkValidity();
     }
 
-    checkValidity () {
-        const {answer, onAnswerValid} = this.props;
+    checkValidity() {
+        const { answer, onAnswerValid } = this.props;
 
         if (answer) {
             onAnswerValid();
         }
     }
 
-    handleOnChange (e) {
-        const {onAnswerValid, onAnswerInvalid } = this.props;
+    handleOnChange(e) {
+        const { onAnswerValid, onAnswerInvalid } = this.props;
         e.target.checkValidity() ? onAnswerValid() : onAnswerInvalid();
     }
 
-    render () {
-        const {
-            answerType,
-            answer,
-            options,
-            inputFieldName
-        } = this.props;
+    render() {
+        const { answerType, answer, options, inputFieldName } = this.props;
 
         if (answerType === 'dropdown' || answerType === 'radio') {
             let MultipleOptionsInputComponent = DropdownInput;

@@ -11,7 +11,7 @@ const tableStyle = css`
     padding: 0;
 
     & > * {
-        padding: 0 0 50px 0;
+        padding: 0 0 60px 0;
         display: flex;
         flex-direction: column;
         align-items: center;

@@ -39,7 +39,7 @@ export default function TextInput({ defaultValue, onChange, ...props }) {
                         className={inputStyle}
                         onChange={e => {
                             console.log(e.target.value);
-                            changeValue(e.target.value);
+                            changeValue(e.target.value.trimStart());
                             onChange(e);
                         }}
                     />

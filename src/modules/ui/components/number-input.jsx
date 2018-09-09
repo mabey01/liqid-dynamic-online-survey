@@ -12,11 +12,19 @@ export default function NumberInput({ defaultValue, onChange, ...props }) {
                     <input
                         {...props}
                         type="number"
-                        value={value || 0}
+                        value={value || ''}
                         className={inputStyle}
                         onChange={e => {
-                            console.log(e.target.value);
-                            changeValue(e.target.value);
+                            const value = e.target.value || '';
+
+                            if (value) {
+                                changeValue(parseInt(value));
+                            } else {
+                                changeValue(value);
+                            }
+
+                            console.log(value);
+
                             onChange(e);
                         }}
                     />

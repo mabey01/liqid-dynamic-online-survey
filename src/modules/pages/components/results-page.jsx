@@ -1,28 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import {css} from 'emotion';
+import { css } from 'emotion';
 
 import { ProvideAllQuestion } from 'survey';
 import { Table, Colors } from 'ui';
 
 const questionStyle = css`
     &:before {
-        content: 'Q: ';
+        content: '';
         color: ${Colors.lightGrey};
     }
-    
+
     color: ${Colors.darkGrey};
 `;
 
 const answerStyle = css`
     &:before {
-        content: 'A: ';
+        content: '';
         color: ${Colors.lightGrey};
     }
-    
+
     color: ${Colors.darkGrey};
-    
+
     font-size: 2em;
 `;
 
@@ -36,8 +36,12 @@ export default function ResultsPage() {
                         {questions.map(question => {
                             return (
                                 <li key={question.question}>
-                                    <div className={questionStyle}>{question.question}</div>
-                                    <div className={answerStyle}>{question.answer}</div>
+                                    <div className={questionStyle}>
+                                        {question.question}
+                                    </div>
+                                    <div className={answerStyle}>
+                                        {question.answer}
+                                    </div>
                                 </li>
                             );
                         })}
