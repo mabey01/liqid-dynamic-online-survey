@@ -38,7 +38,7 @@ export default function ResultsPage() {
         <div>
             <header className={headerStyle}>
                 <Link to="/">Home</Link>
-                <Link to="/startOver">Start over</Link>
+                <Link to="/startOver">Start Over</Link>
             </header>
 
             <ProvideAllQuestion>

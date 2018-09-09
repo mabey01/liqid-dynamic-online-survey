@@ -8,3 +8,8 @@ yarn && yarn start
 ```
 
 This will install all dependencies, compile the application using development mode and open a browser window for the corresponding port.
+
+## Testing
+```
+yarn test
+```
