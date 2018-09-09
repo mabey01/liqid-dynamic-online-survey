@@ -1,0 +1,23 @@
+[
+  {
+    "question": "How many start are there?",
+    "answerType": "number"
+  },
+
+  {
+    "question": "What is the name of our closest Star?",
+    "answerType": "text"
+  },
+
+  {
+    "question": "Who shot first?",
+    "answerType": "radio",
+    "options": ["Han", "Greedo"]
+  },
+
+  {
+    "question": "Who is not a Jedi Master?",
+    "answerType": "dropdown",
+    "options": ["Luke Skywalker", "Yoda", "Mace Windu"]
+  }
+]
