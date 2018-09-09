@@ -43,7 +43,13 @@ export default class Answer extends React.PureComponent {
     }
 
     render() {
-        const { answerType, placeholder, answer, options, inputFieldName } = this.props;
+        const {
+            answerType,
+            placeholder,
+            answer,
+            options,
+            inputFieldName
+        } = this.props;
 
         if (answerType === 'dropdown' || answerType === 'radio') {
             let MultipleOptionsInputComponent = DropdownInput;

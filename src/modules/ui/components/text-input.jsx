@@ -23,7 +23,7 @@ export const inputStyle = css`
     :focus {
         outline: none;
     }
-    
+
     &::placeholder {
         color: ${Colors.lightGrey};
     }
