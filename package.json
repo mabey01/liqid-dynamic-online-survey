@@ -9,7 +9,7 @@
     "node": "^10.8.0"
   },
   "scripts": {
-    "start:dev": "webpack-dev-server --open --mode development",
+    "start": "webpack-dev-server --open --mode development",
     "prettier": "prettier --single-quote --tab-width 4 --write src/**/*.{js,jsx}"
   },
   "pre-commit": [ "prettier" ],
