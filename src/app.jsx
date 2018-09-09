@@ -27,7 +27,10 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-    writeToStorage('answers', store.getState().questions.map(question => question.answer));
+    writeToStorage(
+        'answers',
+        store.getState().questions.map(question => question.answer)
+    );
 });
 
 ReactDOM.render(
