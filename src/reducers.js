@@ -1,5 +1,7 @@
+import {ADD_ANSWER, REMOVE_ALL_ANSWERS} from 'survey';
+
 export default function todoApp(state = {}, action) {
-    if (action.type === 'ADD_ANSWER') {
+    if (action.type === ADD_ANSWER) {
         return {
             ...state,
             questions: state.questions.map((question, index) => {
@@ -14,7 +16,7 @@ export default function todoApp(state = {}, action) {
         };
     }
 
-    if (action.type === 'REMOVE_ALL_ANSWERS') {
+    if (action.type === REMOVE_ALL_ANSWERS) {
         return {
             ...state,
             questions: state.questions.map(question => ({
