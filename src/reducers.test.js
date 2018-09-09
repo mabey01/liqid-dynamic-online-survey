@@ -1,7 +1,7 @@
 import Reducers from './reducers.js';
 
-import ADD_ANSWER from './modules/survey/actions/add-answer.js';
-import REMOVE_ALL_ANSWERS from './modules/survey/actions/remove-all-answers.js';
+import { ADD_ANSWER } from './modules/survey/actions/add-answer.js';
+import { REMOVE_ALL_ANSWERS } from './modules/survey/actions/remove-all-answers.js';
 
 describe('reducers for all actions', () => {
     const fakeStore = {

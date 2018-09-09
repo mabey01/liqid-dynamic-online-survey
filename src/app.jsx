@@ -13,7 +13,8 @@ import Reducer from './reducers.js';
 
 import SurveyData from './questions.json';
 
-const answers = loadFromStorage('answers');
+const ANSWERS_KEY = 'answers';
+const answers = loadFromStorage(ANSWERS_KEY);
 
 const store = createStore(
     Reducer,
@@ -28,7 +29,7 @@ const store = createStore(
 
 store.subscribe(() => {
     writeToStorage(
-        'answers',
+        ANSWERS_KEY,
         store.getState().questions.map(question => question.answer)
     );
 });

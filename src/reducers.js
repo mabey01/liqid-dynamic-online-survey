@@ -1,5 +1,5 @@
-import ADD_ANSWER from './modules/survey/actions/add-answer.js';
-import REMOVE_ALL_ANSWERS from './modules/survey/actions/remove-all-answers.js';
+import { ADD_ANSWER } from './modules/survey/actions/add-answer.js';
+import { REMOVE_ALL_ANSWERS } from './modules/survey/actions/remove-all-answers.js';
 
 export default function todoApp(state = {}, action) {
     if (action.type === ADD_ANSWER) {

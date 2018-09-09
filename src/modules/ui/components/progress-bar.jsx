@@ -30,7 +30,7 @@ const getProgressStyle = percentage => css`
 `;
 
 export default function ProgressBar({ value, min, max }) {
-    const currentPercentage = getPercentage(value, min, max);
+    const currentPercentage = getPercentage(value, max, min);
     if (currentPercentage < 0) {
         console.warn('provided parameters are below 0%');
     }
