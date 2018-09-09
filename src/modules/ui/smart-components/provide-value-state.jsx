@@ -7,6 +7,10 @@ export default class ProvideValueState extends React.PureComponent {
         onChange: T.func
     };
 
+    static defaultProps = {
+        defaultValue: null
+    };
+
     constructor(props) {
         super(props);
 

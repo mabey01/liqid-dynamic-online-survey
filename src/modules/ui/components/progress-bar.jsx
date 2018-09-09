@@ -3,6 +3,8 @@ import T from 'prop-types';
 import { css } from 'emotion';
 
 import Colors from '../colors.js';
+import getPercentage from '../helpers/get-percentage.js';
+import getHumanFloat from '../helpers/get-human-float.js';
 
 const barStyle = css`
     position: relative;
@@ -28,7 +30,7 @@ const getProgressStyle = percentage => css`
 `;
 
 export default function ProgressBar({ value, min, max }) {
-    const currentPercentage = ((value - min) * 100) / (max - min);
+    const currentPercentage = getPercentage(value, min, max);
     if (currentPercentage < 0) {
         console.warn('provided parameters are below 0%');
     }
@@ -38,7 +40,7 @@ export default function ProgressBar({ value, min, max }) {
     }
 
     const realPercentage = Math.max(0, Math.min(100, currentPercentage));
-    const humanPercentage = Math.round(currentPercentage * 100) / 100;
+    const humanPercentage = getHumanFloat(currentPercentage);
 
     return (
         <div className={barStyle} title={`${humanPercentage}%`}>
