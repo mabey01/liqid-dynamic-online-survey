@@ -15,7 +15,9 @@ export default function QuestionPage({ match, history }) {
         <ProvideAllQuestion>
             {({ questions }) => (
                 <div>
-                    <ProgressBar max={questions.length} value={index} />
+                    <header>
+                        <ProgressBar max={questions.length} value={index} />
+                    </header>
                     <ProvideDispatchAddAnswer>
                         {({ addAnswer }) => (
                             <Form
