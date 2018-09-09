@@ -3,64 +3,85 @@ import T from 'prop-types';
 
 import { NumberInput, TextInput, DropdownInput, RadioInput } from 'ui';
 
-export default function Answer({
-    answerType,
-    answer,
-    options,
-    inputFieldName,
-    onAnswerValid,
-    onAnswerInvalid
-}) {
-    const onChange = e =>
+export default class Answer extends React.PureComponent {
+
+    static propTypes = {
+        answerType: T.string.isRequired,
+        onAnswerValid: T.func.isRequired,
+        onAnswerInvalid: T.func.isRequired,
+
+        answer: T.oneOfType([T.string, T.number]),
+        options: T.arrayOf(T.oneOfType([T.string, T.number])),
+        inputFieldName: T.string
+    };
+
+    static defaultProps = {
+        answer: null,
+        options: [],
+        inputFieldName: 'answer'
+    };
+
+    componentDidMount() {
+        this.checkValidity();
+    }
+
+    componentDidUpdate() {
+        this.checkValidity();
+    }
+
+    checkValidity () {
+        const {answer, onAnswerValid} = this.props;
+
+        if (answer) {
+            onAnswerValid();
+        }
+    }
+
+    handleOnChange (e) {
+        const {onAnswerValid, onAnswerInvalid } = this.props;
         e.target.checkValidity() ? onAnswerValid() : onAnswerInvalid();
+    }
 
-    if (answerType === 'dropdown' || answerType === 'radio') {
-        let MultipleOptionsInputComponent = DropdownInput;
+    render () {
+        const {
+            answerType,
+            answer,
+            options,
+            inputFieldName
+        } = this.props;
 
-        if (answerType === 'radio') {
-            MultipleOptionsInputComponent = RadioInput;
+        if (answerType === 'dropdown' || answerType === 'radio') {
+            let MultipleOptionsInputComponent = DropdownInput;
+
+            if (answerType === 'radio') {
+                MultipleOptionsInputComponent = RadioInput;
+            }
+
+            return (
+                <MultipleOptionsInputComponent
+                    required
+                    name={inputFieldName}
+                    defaultValue={answer}
+                    options={options}
+                    onChange={::this.handleOnChange}
+                />
+            );
+        }
+
+        let InputComponent = TextInput;
+
+        if (answerType === 'number') {
+            InputComponent = NumberInput;
         }
 
         return (
-            <MultipleOptionsInputComponent
-                defaultValue={answer}
-                options={options}
-                onChange={onChange}
-                name={inputFieldName}
+            <InputComponent
+                autoFocus
                 required
+                name={inputFieldName}
+                defaultValue={answer}
+                onChange={::this.handleOnChange}
             />
         );
     }
-
-    let InputComponent = TextInput;
-
-    if (answerType === 'number') {
-        InputComponent = NumberInput;
-    }
-
-    return (
-        <InputComponent
-            autoFocus
-            required
-            name={inputFieldName}
-            defaultValue={answer}
-            onChange={onChange}
-        />
-    );
 }
-
-Answer.propTypes = {
-    answerType: T.string.isRequired,
-    onAnswerValid: T.func.isRequired,
-    onAnswerInvalid: T.func.isRequired,
-
-    answer: T.oneOfType([T.string, T.number]),
-    options: T.arrayOf(T.oneOfType([T.string, T.number])),
-    inputFieldName: T.string
-};
-
-Answer.defaultProps = {
-    answer: null,
-    options: [],
-    inputFieldName: 'answer'
-};

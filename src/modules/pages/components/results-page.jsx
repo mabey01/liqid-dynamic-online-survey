@@ -1,8 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ProvideAllQuestion, ProvideDispatchRemoveAllAnswers } from 'survey';
-import { Table } from 'ui';
+import {css} from 'emotion';
+
+import { ProvideAllQuestion } from 'survey';
+import { Table, Colors } from 'ui';
+
+const questionStyle = css`
+    &:before {
+        content: 'Q: ';
+        color: ${Colors.lightGrey};
+    }
+    
+    color: ${Colors.darkGrey};
+`;
+
+const answerStyle = css`
+    &:before {
+        content: 'A: ';
+        color: ${Colors.lightGrey};
+    }
+    
+    color: ${Colors.darkGrey};
+    
+    font-size: 2em;
+`;
 
 export default function ResultsPage() {
     return (
@@ -14,8 +36,8 @@ export default function ResultsPage() {
                         {questions.map(question => {
                             return (
                                 <li key={question.question}>
-                                    <div>Q: {question.question}</div>
-                                    <div>A: {question.answer}</div>
+                                    <div className={questionStyle}>{question.question}</div>
+                                    <div className={answerStyle}>{question.answer}</div>
                                 </li>
                             );
                         })}
