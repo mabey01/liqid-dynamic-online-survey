@@ -1,7 +1,5 @@
 import { connect } from 'react-redux';
 
-const RenderPropProvider = ({ questions, children }) => children(questions);
+const RenderPropProvider = ({ children, ...props }) => children(props);
 
-export default connect(state => ({ questions: state.questions }))(
-    RenderPropProvider
-);
+export default connect(state => state)(RenderPropProvider);

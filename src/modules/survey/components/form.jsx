@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from 'ui';
+import { Button, Footer } from 'ui';
 
 export default class Form extends React.PureComponent {
     state = {
@@ -15,7 +15,7 @@ export default class Form extends React.PureComponent {
         console.log(e);
         e.preventDefault();
 
-        const value = this.form[0].value;
+        const value = this.form['answer'].value;
         this.form.reset();
         this.props.onNext(value);
     }
@@ -30,16 +30,19 @@ export default class Form extends React.PureComponent {
                     enableSubmit: this.toggleSubmit(true),
                     disableSubmit: this.toggleSubmit(false)
                 })}
-                <div>
-                    <Button onClick={onBack}>Back</Button>
+                <Footer>
+                    <Button onClick={onBack} size="regular">
+                        Back
+                    </Button>
                     <Button
                         type="submit"
                         disabled={isSubmitDisabled}
                         onClick={::this.handleSubmit}
+                        size="regular"
                     >
                         Next
                     </Button>
-                </div>
+                </Footer>
             </form>
         );
     }

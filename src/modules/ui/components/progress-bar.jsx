@@ -2,12 +2,14 @@ import React from 'react';
 import T from 'prop-types';
 import { css } from 'emotion';
 
+import Colors from '../colors.js';
+
 const barStyle = css`
     position: relative;
     width: 100%;
     height: 20px;
 
-    background: grey;
+    background: ${Colors.extraLightGrey};
     border-radius: 2px;
     overflow: hidden;
 `;
@@ -20,13 +22,13 @@ const getProgressStyle = percentage => css`
     height: 100%;
 
     transform: translateX(-${100 - percentage}%);
-    transition: transform 100ms;
+    transition: transform 200ms;
 
-    background: red;
+    background: ${Colors.green};
 `;
 
-export default function ProgressBar({ current, min, max }) {
-    const currentPercentage = ((current - min) * 100) / (max - min);
+export default function ProgressBar({ value, min, max }) {
+    const currentPercentage = ((value - min) * 100) / (max - min);
     if (currentPercentage < 0) {
         console.warn('provided parameters are below 0%');
     }
@@ -46,13 +48,13 @@ export default function ProgressBar({ current, min, max }) {
 }
 
 ProgressBar.propTypes = {
-    current: T.number,
+    value: T.number,
     min: T.number,
     max: T.number
 };
 
 ProgressBar.defaultProps = {
-    current: 0,
+    value: 0,
     min: 0,
     max: 100
 };

@@ -1,62 +1,34 @@
 import React from 'react';
+import T from 'prop-types';
 
-import { NumberInput, TextInput } from 'ui';
+import { NumberInput, TextInput, DropdownInput, RadioInput } from 'ui';
 
 export default function Answer({
     answerType,
-    options,
     answer,
+    options,
+    inputFieldName,
     onAnswerValid,
     onAnswerInvalid
 }) {
-    if (answerType === 'radio') {
-        return (
-            <div>
-                {options.map(option => {
-                    return (
-                        <div key={option}>
-                            <input
-                                type="radio"
-                                id={option}
-                                name="answer"
-                                value={option}
-                                defaultChecked={answer}
-                                onChange={e =>
-                                    e.target.checkValidity()
-                                        ? onAnswerValid()
-                                        : onAnswerInvalid()
-                                }
-                                required
-                            />
-                            <label htmlFor={option}>{option}</label>
-                        </div>
-                    );
-                })}
-            </div>
-        );
-    }
+    const onChange = e =>
+        e.target.checkValidity() ? onAnswerValid() : onAnswerInvalid();
 
-    if (answerType === 'dropdown') {
+    if (answerType === 'dropdown' || answerType === 'radio') {
+        let MultipleOptionsInputComponent = DropdownInput;
+
+        if (answerType === 'radio') {
+            MultipleOptionsInputComponent = RadioInput;
+        }
+
         return (
-            <select
-                name="answer"
+            <MultipleOptionsInputComponent
                 defaultValue={answer}
-                onChange={e =>
-                    e.target.checkValidity()
-                        ? onAnswerValid()
-                        : onAnswerInvalid()
-                }
+                options={options}
+                onChange={onChange}
+                name={inputFieldName}
                 required
-            >
-                <option value="">Select</option>
-                {options.map(option => {
-                    return (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    );
-                })}
-            </select>
+            />
         );
     }
 
@@ -70,10 +42,25 @@ export default function Answer({
         <InputComponent
             autoFocus
             required
+            name={inputFieldName}
             defaultValue={answer}
-            onChange={e =>
-                e.target.checkValidity() ? onAnswerValid() : onAnswerInvalid()
-            }
+            onChange={onChange}
         />
     );
 }
+
+Answer.propTypes = {
+    answerType: T.string.isRequired,
+    onAnswerValid: T.func.isRequired,
+    onAnswerInvalid: T.func.isRequired,
+
+    answer: T.oneOfType([T.string, T.number]),
+    options: T.arrayOf(T.oneOfType([T.string, T.number])),
+    inputFieldName: T.string
+};
+
+Answer.defaultProps = {
+    answer: null,
+    options: [],
+    inputFieldName: 'answer'
+};

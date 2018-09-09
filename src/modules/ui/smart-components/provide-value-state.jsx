@@ -3,16 +3,15 @@ import T from 'prop-types';
 
 export default class ProvideValueState extends React.PureComponent {
     static propTypes = {
-        defaultValue: T.oneOf([T.number, T.string])
+        defaultValue: T.oneOfType([T.number, T.string]),
+        onChange: T.func
     };
 
-    state = {
-        value: null
-    };
+    constructor(props) {
+        super(props);
 
-    static getDerivedStateFromProps({ defaultValue }) {
-        return {
-            value: defaultValue
+        this.state = {
+            value: props.defaultValue
         };
     }
 
